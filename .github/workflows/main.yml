@@ -32,10 +32,10 @@ jobs:
       - name: Run InitialLoginTestIT
         run: |
           cd it-selenium
-          mvn -V -ntp -Dit.test=org.apache.roller.selenium.InitialLoginTestIT failsafe:integration-test
+          mvn -V -ntp -Dtest=org.apache.roller.selenium.InitialLoginTestIT test
 
-      - name: Publish IT Report
+      - name: Publish Test Report
         uses: test-summary/action@v2
         if: always()
         with:
-          paths: "it-selenium/target/failsafe-reports/TEST-*.xml"
+          paths: "it-selenium/target/surefire-reports/TEST-*.xml"
