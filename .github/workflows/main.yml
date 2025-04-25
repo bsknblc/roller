@@ -1,4 +1,4 @@
-name: Run InitialLoginTestIT
+name: Run self InitialLoginTestIT
 
 on:
   push:
