@@ -26,23 +26,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: pwd
-        run: pwd
-
-      - name: find doc
-        run: find / -name "main.yml"
-
-      - name: ls
-        run: ls
-
       - name: Build Project
         run: mvn -V -ntp install -DskipTests
 
-      - name: Start Roller app (example: Jetty plugin)
+      - name: Start Roller app 
         run: |
           cd your-app-directory
           mvn jetty:run &
-          sleep 200  # Give server time to start up
+          sleep 200  
       
       - name: Run InitialLoginTestIT
         run: |
