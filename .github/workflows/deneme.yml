@@ -1,0 +1,34 @@
+name: Run self InitialLoginTestIT
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  selenium-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+
+      - name: Set up Xvfb (for headless display)
+        run: |
+          echo "DISPLAY=:99.0" >> $GITHUB_ENV
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run InitialLoginTestIT
+        run: |
+          cd it-selenium
+          mvn -V -ntp -Dtest=org.apache.roller.selenium.InitialLoginTestIT test
+
+
