@@ -38,6 +38,12 @@ jobs:
       - name: Build Project
         run: mvn -V -ntp install -DskipTests
 
+      - name: Start Roller app (example: Jetty plugin)
+        run: |
+          cd your-app-directory
+          mvn jetty:run &
+          sleep 200  # Give server time to start up
+      
       - name: Run InitialLoginTestIT
         run: |
           cd it-selenium
