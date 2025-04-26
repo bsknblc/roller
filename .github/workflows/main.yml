@@ -31,7 +31,6 @@ jobs:
 
       - name: Start Roller app 
         run: |
-          cd your-app-directory
           mvn jetty:run &
           sleep 200  
       
