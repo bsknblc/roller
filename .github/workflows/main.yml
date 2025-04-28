@@ -32,7 +32,7 @@ jobs:
       - name: Start Roller app 
         run: |
           mvn jetty:run &
-          sleep 200  
+          sleep 600  
       
       - name: Run InitialLoginTestIT
         run: |
