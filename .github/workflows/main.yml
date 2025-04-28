@@ -31,8 +31,19 @@ jobs:
 
       - name: Start Roller app 
         run: |
-          mvn jetty:run &
-          sleep 600  
+          mvn jetty:run > jetty.log 2>&1 &
+          echo $! > jetty_pid.txt
+
+      - name: Wait for Roller to be available
+        run: |
+          for i in {1..60}; do
+            if curl -s http://localhost:8080/roller/ > /dev/null; then
+              echo "Roller is up!"
+              break
+            fi
+            echo "Waiting for Roller..."
+            sleep 5
+          done
       
       - name: Run InitialLoginTestIT
         run: |
