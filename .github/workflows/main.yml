@@ -42,7 +42,7 @@ jobs:
               break
             fi
             echo "Waiting for Roller..."
-            sleep 5
+            sleep 500
           done
       
       - name: Run InitialLoginTestIT
