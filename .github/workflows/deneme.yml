@@ -26,6 +26,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Build Project
+        run: mvn -V -ntp install -DskipTests & sleep 400  
+
       - name: Run InitialLoginTestIT
         run: |
           cd it-selenium
